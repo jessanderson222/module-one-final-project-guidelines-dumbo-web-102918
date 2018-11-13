@@ -15,12 +15,10 @@ ingredients = recipe_hash["results"].map do |recipe|
   recipe["ingredients"]
 end
 
-ingredient_string = ingredients.join(", ")
+ingredient_string = ingredients.join(",")
 
-new_ingredient = ingredient_string.split(",").uniq
+new_ingredient = ingredient_string.split(/,\s?/).uniq
 
 new_ingredient.each do |ingredient|
   Ingredient.create(name: ingredient)
 end
-
-#binding.pry
