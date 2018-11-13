@@ -7,10 +7,20 @@ recipe_name = recipe_hash["results"].map do |recipe|
   recipe["title"]
 end
 
-ingredient_recipe = recipe_hash["results"].map do |recipe|
+recipe_name.each do |recipe|
+  Recipe.create(name: recipe)
+end
+
+ingredients = recipe_hash["results"].map do |recipe|
   recipe["ingredients"]
 end
 
+ingredient_string = ingredients.join(", ")
 
+new_ingredient = ingredient_string.split(",").uniq
+
+new_ingredient.each do |ingredient|
+  Ingredient.create(name: ingredient)
+end
 
 binding.pry

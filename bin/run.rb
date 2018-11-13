@@ -3,3 +3,5 @@ require_relative './helpers.rb'
 #invoke methods here
 welcome
 puts "HELLO WORLD"
+
+binding.pry 
