@@ -23,4 +23,4 @@ new_ingredient.each do |ingredient|
   Ingredient.create(name: ingredient)
 end
 
-binding.pry
+#binding.pry
