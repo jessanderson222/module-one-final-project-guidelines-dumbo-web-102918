@@ -4,6 +4,6 @@ class AddUserRecipes < ActiveRecord::Migration[5.0]
       t.integer :user_id
       t.integer :recipe_id
       t.string :rename
+    end
   end
-end
 end
