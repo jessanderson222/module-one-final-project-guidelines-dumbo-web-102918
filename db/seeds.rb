@@ -8,7 +8,7 @@ recipe_name = recipe_hash["results"].map do |recipe|
 end
 
 recipe_name.each do |recipe|
-  Recipe.create(name: recipe)
+  Recipe.create(name: recipe.downcase)
 end
 
 ingredients = recipe_hash["results"].map do |recipe|
@@ -22,3 +22,5 @@ new_ingredient = ingredient_string.split(/,\s?/).uniq
 new_ingredient.each do |ingredient|
   Ingredient.create(name: ingredient)
 end
+
+binding.pry
