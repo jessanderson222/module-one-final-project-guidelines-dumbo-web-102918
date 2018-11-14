@@ -73,7 +73,7 @@ new_ingredient.each {|string| Ingredient.find_or_create_by(name: string)}
 
 
 
-
+# -------------------------------------------------------------------
 
 
 def self.find_or_create_by (name:)
