@@ -110,11 +110,4 @@ end
 recipe_name.each {|string| Recipe.find_or_create_by(name: string)}
 
 
-# -----------------------------------------------------------------------
-
-IngredientRecipe.create(ingredient_id: 574, recipe_id: 1)
-IngredientRecipe.create(ingredient_id: 575, recipe_id: 1)
-IngredientRecipe.create(ingredient_id: 576, recipe_id: 1)
-IngredientRecipe.create(ingredient_id: 577, recipe_id: 1)
-
 binding.pry
