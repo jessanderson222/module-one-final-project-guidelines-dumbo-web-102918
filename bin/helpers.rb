@@ -65,8 +65,8 @@ def saves_recipe
 end
 
 def get_id_for_ingredient
-  $array = $ingredient_array.map do |ingredient|
+  array = $ingredient_array.map do |ingredient|
     Ingredient.find_by name: ingredient
   end
-  puts $array
+  puts array
 end
