@@ -110,5 +110,4 @@ end
 recipe_name.each {|string| Recipe.find_or_create_by(name: string)}
 
 
-
 binding.pry
