@@ -19,7 +19,7 @@ class User <ActiveRecord::Base
       get_name
       get_username
     end
-    user 
+    user
     # returns the user instance
 
   end
@@ -50,7 +50,23 @@ class User <ActiveRecord::Base
     #add the update ingredients for recipe later
   end
 
+  def self.add_recipe_to_user
+      User.find_by(name: $name).recipes << Recipe.find_by(name: $recipe_name)
+      puts "success!"
+  end
 
-# binding.pry
+  def self.saves_ingredient_to_user
+    puts "Which ingredients do you have? (seperate ingredients with a comma)"
+    $ingredients = gets.chomp
+
+    $ingredient_array2 = $ingredients.split(/,\s?/).uniq
+    $ingredient_array2.each do |ingredient|
+      self.find_by(name: $name).ingredients << Ingredient.find_or_create_by(name: ingredient)
+    end
+
+    puts "done!"
+  end
+
+
 
 end

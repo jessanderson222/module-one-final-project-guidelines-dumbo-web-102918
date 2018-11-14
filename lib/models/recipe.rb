@@ -12,7 +12,6 @@ class Recipe <ActiveRecord::Base
 
   def self.saves_recipe
       Recipe.create(name: $recipe_name)
-      puts "saved!"
   end
 
   def self.add_ingredients_to_recipe
