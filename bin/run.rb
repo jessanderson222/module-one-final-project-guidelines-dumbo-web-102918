@@ -15,3 +15,4 @@ Recipe.saves_recipe
 Recipe.add_ingredients_to_recipe
 User.add_recipe_to_user
 User.saves_ingredient_to_user
+get_id

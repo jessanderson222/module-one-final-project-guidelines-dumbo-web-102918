@@ -22,13 +22,9 @@ def username_name
 end
 
 def get_id
-  puts "what ingredient do you have?"
-  ingredient = gets.chomp
-  var = Ingredient.find_by(name: ingredient)
-  var2 = var.id
-
-  array = IngredientRecipe.all.where(ingredient_id: var2)
-
-  array2 = array.map {|ir| ir.recipe_id}
-  array2.map {|id| Recipe.find(id) }
+  puts "what ingredient do you havee?"
+  ingredient2 = gets.chomp.downcase
+  array =  Ingredient.find_by(name: ingredient2).recipes
+  reciarray = array.map {|recipe| recipe.name}
+  puts reciarray
 end
