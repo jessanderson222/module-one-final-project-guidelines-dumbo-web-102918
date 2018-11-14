@@ -4,4 +4,7 @@ require_relative './helpers.rb'
 welcome
 puts "HELLO WORLD"
 
-binding.pry 
+get_name
+get_username
+username_name
+create_new_or_not
