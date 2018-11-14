@@ -23,4 +23,19 @@ new_ingredient.each do |ingredient|
   Ingredient.create(name: ingredient)
 end
 
+recipe_ingredients = []
+
+recipe_hash["results"].each do |recipe|
+  recipe_ingredients << recipe["title"]
+  recipe_ingredients << recipe["ingredients"]
+end
+
+first_ingre = recipe_hash["results"].first["ingredients"]
+
+first_array = first_ingre.split(/,\s?/)
+
+first_array.each do |string|
+  string.find_or_create_by(name: string)
+end
+
 binding.pry
