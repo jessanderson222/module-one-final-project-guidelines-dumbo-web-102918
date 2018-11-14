@@ -25,7 +25,11 @@ class User <ActiveRecord::Base
   end
 
   def viewing_all_ingredients_of_user
-    self.ingredients
+    self.find_by(name: $name).ingredients
+  end
+
+  def viewing_all_recipes_of_user
+    self.find_by(name: $name).recipes
   end
 
   def update_ingredients
