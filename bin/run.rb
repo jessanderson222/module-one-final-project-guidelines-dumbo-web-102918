@@ -1,5 +1,6 @@
 require_relative '../config/environment'
 require_relative './helpers.rb'
+require_relative '../lib/models/user.rb'
 #invoke methods here
 welcome
 puts "HELLO WORLD"
@@ -13,4 +14,4 @@ add_ingredients
 changes_ingredients_to_array
 saves_ingredient
 saves_recipe
-get_id_for_ingredient
+add_ingredients_to_recipe
