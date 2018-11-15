@@ -24,4 +24,10 @@ class Ingredient <ActiveRecord::Base
     puts "saved!"
   end
 
+  def self.create_ingredients
+    self.add_ingredients
+    self.changes_ingredients_to_array
+    self.saves_ingredient
+  end
+
 end

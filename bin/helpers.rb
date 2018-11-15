@@ -40,12 +40,24 @@ def welcome_user
 end
 
 def search_recipe
-  puts "what ingredient do you havee?"
-  ingredient2 = gets.chomp.downcase
-  array =  Ingredient.find_by(name: ingredient2).recipes
-  reciarray = array.map {|recipe| recipe.name}
-  puts reciarray
+    puts "what ingredient do you have?"
+    ingredient2 = gets.chomp.downcase
+  if Ingredient.find_by(name: ingredient2) != nil
+    array =  Ingredient.find_by(name: ingredient2).recipes
+    reciarray = array.map {|recipe| recipe.name}
+    puts reciarray
+  else
+    puts "There are no recipes with that ingredient. Would you like to add one? Y/N"
+    input =  gets.chomp.downcase
+    if input == "y"
+      adding_recipes
+      Recipe.all.reload
+    else
+      "Okay"
+    end
+  end
 end
+
 def adding_recipes #creates recipes with ingredient;stores them
   Recipe.add_recipe
   Ingredient.add_ingredients
@@ -57,7 +69,7 @@ def adding_recipes #creates recipes with ingredient;stores them
 end
 
 def methods #methods that are not used yet
-User.saves_ingredient_to_user
+  User.saves_ingredient_to_user
 end
 
 def new_user

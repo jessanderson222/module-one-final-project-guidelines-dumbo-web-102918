@@ -49,10 +49,13 @@ class User <ActiveRecord::Base
     puts "What is the new recipe name?"
     new_recipe = gets.chomp
 
-    $current.recipes.find_by(name: old_recipe).update(name: new_recipe)
-    $current.save
-    $current.reload
-    puts $current.recipes.pluck(:name)
+      $current.recipes.find_by(name: old_recipe).update(name: new_recipe)
+      $current.save
+      $current.reload
+
+    Ingredient.create_ingredients
+
+    #puts $current.recipes.pluck(:name)
     #add the update ingredients for recipe later
   end
 
