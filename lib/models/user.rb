@@ -42,7 +42,7 @@ class User <ActiveRecord::Base
     self.ingredients.find_by(name: old_ingredient).update(name: new_ingredient)
   end
 
-  def update_recipe
+  def self.update_recipe
     puts "What recipe do you want to update?"
     old_recipe = gets.chomp
 
