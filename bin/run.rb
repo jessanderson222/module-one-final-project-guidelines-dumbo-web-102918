@@ -22,7 +22,7 @@ end
 while (current = $current)
 
 #Menu with recipes
-choices = %w(Search Update Create View Exit)
+choices = %w(Search Update Create View Switch Exit)
 option = prompt.select("Hi! What would you like to do with your recipes?", choices)
 
 if option == "Search"
@@ -32,7 +32,9 @@ elsif option == "Update"
 elsif option == "Create"
   adding_recipes
 elsif option == "View"
-  user2 = prompt2.select("What would you like view?", %w(Recipes Ingredients))
+  user2 = prompt2.select("What would you like view?", %w(Recipes Ingredients Exit))
+elsif option == "Switch"
+  puts user
 elsif option[0] == "Exit"
   exit
 end
