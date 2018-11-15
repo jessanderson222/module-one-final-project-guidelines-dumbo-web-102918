@@ -3,33 +3,6 @@ require_relative './helpers.rb'
 
 welcome
 
-def adding_recipes #creates recipes with ingredient;stores them
-  Recipe.add_recipe
-  Ingredient.add_ingredients
-  Ingredient.changes_ingredients_to_array
-  Ingredient.saves_ingredient
-  Recipe.saves_recipe
-  Recipe.add_ingredients_to_recipe
-end
-
-def methods #methods that are not used yet
-User.add_recipe_to_user
-User.saves_ingredient_to_user
-end
-
-def new_user
-  get_name
-  get_username
-  username_name
-  $current_username = User.create_new_or_not
-end
-
-def current_user
-  get_username
-  find_current_user
-  welcome_user
-end
-
 
 #menu prompt objects
 prompt = TTY::Prompt.new(active_color: :cyan)
