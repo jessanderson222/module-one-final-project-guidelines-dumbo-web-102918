@@ -21,7 +21,7 @@ def new_user
   get_name
   get_username
   username_name
-  $username = User.create_new_or_not
+  $current_username = User.create_new_or_not
 end
 
 def current_user
@@ -34,7 +34,7 @@ end
 #menu prompt objects
 prompt = TTY::Prompt.new(active_color: :cyan)
 prompt2 = TTY::Prompt.new(active_color: :cyan)
-login_prompt = TTY::Prompt.new(active_color: :green)
+login_prompt = TTY::Prompt.new(active_color: :bright_cyan)
 
 user = login_prompt.select("Hello! Are you a new user or current user?", %w(New Current))
 
