@@ -22,8 +22,16 @@ def get_username
   $username = gets.chomp
 end
 
+def find_current_user
+  User.find_by(username: $username)
+end
+
 def username_name
   puts "Hi, #{$name}, username: #{$username}"
+end
+
+def welcome_user
+  puts "Welcome back, #{find_current_user.name}"
 end
 
 def search_recipe
