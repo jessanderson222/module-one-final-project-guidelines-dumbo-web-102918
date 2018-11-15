@@ -22,8 +22,13 @@ def get_username
   $username = gets.chomp
 end
 
-def find_current_user
-  User.find_by(username: $username)
+# def find_current_user
+#   User.find_or_create_by(username: $username)
+# end
+
+def user_sign_in
+  user = User.find_or_create_by(username: $username)
+  user
 end
 
 def username_name
@@ -31,7 +36,7 @@ def username_name
 end
 
 def welcome_user
-  puts "Welcome back, #{find_current_user.name}"
+  puts "Welcome back, #{user_sign_in.name}"
 end
 
 def search_recipe
@@ -48,10 +53,10 @@ def adding_recipes #creates recipes with ingredient;stores them
   Ingredient.saves_ingredient
   Recipe.saves_recipe
   Recipe.add_ingredients_to_recipe
+  User.add_recipe_to_user
 end
 
 def methods #methods that are not used yet
-User.add_recipe_to_user
 User.saves_ingredient_to_user
 end
 
@@ -59,11 +64,13 @@ def new_user
   get_name
   get_username
   username_name
-  $username = User.create_new_or_not
+  $current = user_sign_in
+  # User.create_new_or_not
 end
 
-def current_user
+def returning_user
   get_username
-  find_current_user
+  $current = user_sign_in
+  # find_current_user #user.create_new_or_not
   welcome_user
 end

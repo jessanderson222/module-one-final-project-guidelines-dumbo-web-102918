@@ -11,12 +11,15 @@ login_prompt = TTY::Prompt.new(active_color: :bright_cyan)
 
 user = login_prompt.select("Hello! Are you a new user or current user?", %w(New Current))
 
+current = nil
+
 if user == "New"
   new_user
 elsif user == "Current"
-  current_user
+  returning_user
 end
 
+while (current = $current)
 
 #Menu with recipes
 choices = %w(Search Update Create View Exit)
@@ -25,7 +28,7 @@ option = prompt.select("Hi! What would you like to do with your recipes?", choic
 if option == "Search"
   search_recipe
 elsif option == "Update"
-  User.update_recipe
+  current.update_recipe
 elsif option == "Create"
   adding_recipes
 elsif option == "View"
@@ -36,7 +39,9 @@ end
 
 #Viewing lists prompts
 if user2 == "Recipes"
-  User.viewing_all_recipes_of_user
+  current.viewing_all_recipes_of_user
 elsif user2 == "Ingredients"
-  User.viewing_all_ingredients_of_user
+  current.viewing_all_ingredients_of_user
+end
+exit
 end

@@ -5,31 +5,31 @@ class User <ActiveRecord::Base
   has_many :user_recipes
   has_many :recipes, through: :user_recipes
 
-  def self.create_new_or_not
-    puts "Is this correct ? (Y/N)"
+  # def self.create_new_or_not
+  #   puts "Is this correct ? (Y/N)"
+  #
+  #   case (gets.chomp.downcase)
+  #   when 'y'
+  #   user =  User.find_or_create_by(name: $name, username: $username)
+  #   when 'n'
+  #     get_name
+  #     get_username
+  #   else
+  #     puts "sorry"
+  #     get_name
+  #     get_username
+  #   end
+  #   user
+  #   # returns the user instance
+  #
+  # end
 
-    case (gets.chomp.downcase)
-    when 'y'
-    user =  User.find_or_create_by(name: $name, username: $username)
-    when 'n'
-      get_name
-      get_username
-    else
-      puts "sorry"
-      get_name
-      get_username
-    end
-    user
-    # returns the user instance
-
+  def viewing_all_ingredients_of_user
+    puts $current.ingredients.pluck(:name)
   end
 
-  def self.viewing_all_ingredients_of_user
-    self.find_by(name: $name).ingredients
-  end
-
-  def self.viewing_all_recipes_of_user
-    self.find_by(name: $name).recipes
+  def viewing_all_recipes_of_user
+    puts $current.recipes.pluck(:name)
   end
 
   def update_ingredients
@@ -42,20 +42,22 @@ class User <ActiveRecord::Base
     self.ingredients.find_by(name: old_ingredient).update(name: new_ingredient)
   end
 
-  def self.update_recipe
+  def update_recipe
     puts "What recipe do you want to update?"
     old_recipe = gets.chomp
 
     puts "What is the new recipe name?"
     new_recipe = gets.chomp
 
-    self.recipes.find_by(name: old_recipe).update(name: new_recipe)
-
+    $current.recipes.find_by(name: old_recipe).update(name: new_recipe)
+    $current.save
+    $current.reload
+    puts $current.recipes.pluck(:name)
     #add the update ingredients for recipe later
   end
 
   def self.add_recipe_to_user
-      User.find_by(name: $name).recipes << Recipe.find_by(name: $recipe_name)
+      $current.recipes << Recipe.find_by(name: $recipe_name)
       puts "success!"
   end
 
