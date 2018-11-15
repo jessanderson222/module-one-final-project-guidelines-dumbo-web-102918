@@ -1,6 +1,9 @@
 require_relative '../config/environment'
 require_relative './helpers.rb'
 
+system "clear"
+
+
 welcome
 
 

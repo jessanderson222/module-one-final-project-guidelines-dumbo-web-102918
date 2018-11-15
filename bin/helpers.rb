@@ -1,13 +1,15 @@
 
 #write methods here
 
+
+
 def welcome
-  # font = TTY::Font.new(:standard)
-  # font2 = TTY::Font.new(:straight)
-  # pastel = Pastel.new
-  # pastel2 = Pastel.new
-  # puts pastel2.green(font2.write("Welcome to the"))
-  # puts pastel.yellow(font.write("Book of Food!"))
+  font = TTY::Font.new(:standard)
+  font2 = TTY::Font.new(:straight)
+  pastel = Pastel.new
+  pastel2 = Pastel.new
+  puts pastel2.green(font2.write("Welcome to the"))
+  puts pastel.yellow(font.write("Book of Food!"))
   # pp User.all.map {|user| user.username}
 end
 
