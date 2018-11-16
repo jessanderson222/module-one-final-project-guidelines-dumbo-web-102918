@@ -34,17 +34,20 @@ class User <ActiveRecord::Base
     end
 
     $list_array.each do |ingredient|
-      $current.ingredients << Ingredient.find_by(name: ingredient)
+      $current.ingredients << Ingredient.find_or_create_by(name: ingredient)
+      $current.save
     end
+
+    $current.reload
   end
 
 
   def viewing_all_ingredients_of_user
-    $current.ingredients.pluck(:name)
+    puts $current.ingredients.pluck(:name).uniq
   end
 
   def viewing_all_recipes_of_user
-    puts $current.recipes.pluck(:name)
+    puts $current.recipes.pluck(:name).uniq
   end
 
   def update_ingredients
