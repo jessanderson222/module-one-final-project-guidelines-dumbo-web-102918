@@ -2,7 +2,7 @@ require_relative '../config/environment'
 require_relative './helpers.rb'
 
 system "clear"
-api_data
+api_data #coming from the helper file
 
 bar = TTY::ProgressBar.new("downloading [:bar]", total: 30)
 bar.resize(70)
