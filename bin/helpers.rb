@@ -88,3 +88,37 @@ def returning_user
   # find_current_user #user.create_new_or_not
   welcome_user
 end
+
+def api_data
+  array = []
+  array2 = []
+  for num in 1..12
+    recipe_string = RestClient.get("http://www.recipepuppy.com/api/?p=#{num}")
+    recipe_hash = JSON.parse(recipe_string)
+    array << recipe_hash["results"]
+    array[0..-1][0..-1].each do |item|
+      array2 << item
+    end
+  end
+    new_array = array2.flatten
+
+    new_array[0..-1].each do |recipe|
+      Recipe.find_or_create_by(name: recipe["title"])
+    end
+
+    new_array[0..-1].each do |recipe|
+      Recipe.find_by(name: recipe["title"]).ingredients << Ingredient.find_by(name: recipe["ingredients"].split(/,\s?/))
+    end
+
+    ingredients = new_array[0..-1].map do |recipe|
+      recipe["ingredients"]
+    end
+
+    ingredient_array = ingredients.join.split(/,\s?/).uniq
+
+    ingredient_array.each do |ingredient|
+      Ingredient.find_or_create_by(name: ingredient)
+    end
+
+
+end

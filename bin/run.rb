@@ -3,42 +3,70 @@ require_relative './helpers.rb'
 
 system "clear"
 
+api_data
 
 welcome
-
-
 #menu prompt objects
 prompt = TTY::Prompt.new(active_color: :cyan)
 prompt2 = TTY::Prompt.new(active_color: :cyan)
 login_prompt = TTY::Prompt.new(active_color: :bright_cyan)
 
-user = login_prompt.select("Hello! Are you a new user or current user?", %w(New Current))
-if user == "New"
-  new_user
-elsif user == "Current"
-  returning_user
-end
+user = login_prompt.select("Hello! Are you a new user or current user?", %w(New Current Exit))
+  if user == "New"
+    new_user
+  elsif user == "Current"
+    returning_user
+  elsif user == "Exit"
+    exit
+  end
 
 current = nil
 
 while (current = $current)
   #Menu with recipes
-  choices = %w(Search Update Create View Exit)
-  option = prompt.select("Hi! What would you like to do with your recipes?", choices)
+  # choices = %w(Search Update Create View Exit)
+  # option = prompt.select("Hi! What would you like to do with your recipes?", choices)
+  #
+  # if option == "Search"
+  #   search_recipe
+  # elsif option == "Update"
+  #   current.update_recipe
+  # elsif option == "Create"
+  #   adding_recipes
+  # elsif option == "View"
+  #   user2 = prompt2.select("What would you like view?", %w(Recipes Ingredients Exit))
+  # elsif option == "Exit"
+  #   exit
+  #   current = nil
+  # end
 
-  if option == "Search"
-    search_recipe
-  elsif option == "Update"
-    current.update_recipe
-  elsif option == "Create"
-    adding_recipes
-  elsif option == "View"
-    user2 = prompt2.select("What would you like view?", %w(Recipes Ingredients Exit))
-  elsif option == "Exit"
-    exit
-    current = nil
+  option = prompt.select("Hi! What would you like to do with your recipes?") do |menu|
+    menu.choice 'Search a recipe', 1
+    menu.choice 'Update Recipes', 2
+    menu.choice 'Create Recipes', 3
+    menu.choice 'View your Recipes', 4
+    menu.choice 'View all Recipes', 5
+    menu.choice 'View all Ingredients', 6
+    menu.choice 'Exit', 7
   end
 
+  case option
+    when 1
+      search_recipe
+    when 2
+      current.update_recipe
+    when 3
+      adding_recipes
+    when 4
+      user2 = prompt2.select("What would you like view?", %w(Recipes Ingredients Exit))
+    when 5
+      puts Recipe.all.pluck(:name)
+    when 6
+      puts Ingredient.all.pluck(:name)
+    when 7
+      exit
+      current = nil
+  end
   #Viewing lists prompts
   if user2 == "Recipes"
     current.viewing_all_recipes_of_user
