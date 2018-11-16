@@ -24,6 +24,21 @@ class User <ActiveRecord::Base
   #
   # end
 
+  def adding_ingredients_to_user
+    puts "List the ingredients you have in storage (seperate each ingredient with a comma)"
+    $list = gets.chomp
+    $list_array = $list.split(/,\s?/).uniq
+
+    $list_array.each do |ingredient|
+      Ingredient.find_or_create_by(name: ingredient)
+    end
+
+    $list_array.each do |ingredient|
+      $current.ingredients << Ingredient.find_by(name: ingredient)
+    end
+  end
+
+
   def viewing_all_ingredients_of_user
     puts $current.ingredients.pluck(:name)
   end
