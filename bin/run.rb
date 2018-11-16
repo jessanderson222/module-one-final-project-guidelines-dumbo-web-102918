@@ -59,6 +59,7 @@ while (current = $current) #allows all choices to refer to User
     when 7
       puts Ingredient.all.pluck(:name)
     when 8
+      puts "Goodbye!!"
       exit
       current = nil
   end
