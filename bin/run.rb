@@ -25,6 +25,7 @@ user = login_prompt.select("Hello! Are you a new user or current user?", %w(New 
   elsif user == "Current"
     returning_user
   elsif user == "Exit"
+    puts "Goodbye!!"
     exit
   end
 
