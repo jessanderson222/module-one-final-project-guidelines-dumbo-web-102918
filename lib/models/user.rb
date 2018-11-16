@@ -40,7 +40,7 @@ class User <ActiveRecord::Base
 
 
   def viewing_all_ingredients_of_user
-    puts $current.ingredients.pluck(:name)
+    $current.ingredients.pluck(:name)
   end
 
   def viewing_all_recipes_of_user

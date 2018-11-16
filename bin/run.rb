@@ -5,7 +5,7 @@ system "clear"
 api_data
 
 bar = TTY::ProgressBar.new("downloading [:bar]", total: 30)
-bar.resize(50)
+bar.resize(70)
 30.times do
   sleep(0.1)
   bar.advance(1)
