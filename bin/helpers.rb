@@ -2,15 +2,15 @@
 #write methods here
 
 
-
-def welcome
+def welcome #displays a ascii title
+  #random fonts for the welcome screen
   font = TTY::Font.new(:standard)
   font2 = TTY::Font.new(:straight)
   pastel = Pastel.new
   pastel2 = Pastel.new
   puts pastel2.green(font2.write("Welcome to the"))
   puts pastel.yellow(font.write("Book of Food!"))
-  # pp User.all.map {|user| user.username}
+
 end
 
 def get_name
@@ -74,7 +74,7 @@ def methods #methods that are not used yet
   User.saves_ingredient_to_user
 end
 
-def new_user
+def new_user #creates new user and saves in user_sign_in method
   get_name
   get_username
   username_name
@@ -89,10 +89,10 @@ def returning_user
   welcome_user
 end
 
-def api_data
+def api_data #saves recipe info to Recipe & Ingredient table from API
   array = []
   array2 = []
-  for num in 1..12
+  for num in 1..5
     recipe_string = RestClient.get("http://www.recipepuppy.com/api/?p=#{num}")
     recipe_hash = JSON.parse(recipe_string)
     array << recipe_hash["results"]
@@ -102,23 +102,30 @@ def api_data
   end
     new_array = array2.flatten
 
-    new_array[0..-1].each do |recipe|
+    new_array[0..-1].each do |recipe| #saves recipe names
       Recipe.find_or_create_by(name: recipe["title"])
     end
 
-    new_array[0..-1].each do |recipe|
-      Recipe.find_by(name: recipe["title"]).ingredients << Ingredient.find_by(name: recipe["ingredients"].split(/,\s?/))
-    end
-
+    #getting string of ingredients from api hash
     ingredients = new_array[0..-1].map do |recipe|
       recipe["ingredients"]
     end
 
+    #turns string into array
     ingredient_array = ingredients.join.split(/,\s?/).uniq
 
+    #saves ingredients from array
     ingredient_array.each do |ingredient|
       Ingredient.find_or_create_by(name: ingredient)
     end
+
+
+    #attempting to shovel ingredients string to recipe individually
+
+    # new_array[0..-1].each do |recipe|
+    #   Recipe.find_by(name: recipe["title"]).ingredients << Ingredient.find_by(name: recipe["ingredients"].split(/,\s?/))
+    # end
+
 
 
 end

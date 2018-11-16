@@ -17,6 +17,7 @@ prompt = TTY::Prompt.new(active_color: :cyan)
 prompt2 = TTY::Prompt.new(active_color: :cyan)
 login_prompt = TTY::Prompt.new(active_color: :bright_cyan)
 
+#User
 user = login_prompt.select("Hello! Are you a new user or current user?", %w(New Current Exit))
   if user == "New"
     new_user
@@ -27,7 +28,7 @@ user = login_prompt.select("Hello! Are you a new user or current user?", %w(New 
   end
 
 current = nil
-while (current = $current)
+while (current = $current) #allows all choices to refer to User
   #menu
   option = prompt.select("Hi #{$name}! What would you like to do?") do |menu|
     menu.choice 'Search a recipe', 1

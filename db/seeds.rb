@@ -13,7 +13,23 @@ end
   new_array[0..-1].map do |recipe|
     recipe["title"]
   end
-binding.pry
+
+  ingredients = new_array[0..-1].map do |recipe|
+    recipe["ingredients"]
+  end
+
+  ingredients.split(/,\s?/)
+
+
+  new_array[0..-1].each do |recipe|
+
+
+      recipe["ingredients"].split(/,\s?/).each do |item|
+
+      binding.pry
+      end
+
+  end
 
 
 # puts recipe_hash["results"][0]
