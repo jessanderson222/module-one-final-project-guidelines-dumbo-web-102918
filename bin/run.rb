@@ -4,8 +4,9 @@ require_relative './helpers.rb'
 system "clear"
 api_data #coming from the helper file
 
+#adding download bar animation for fun
 bar = TTY::ProgressBar.new("downloading [:bar]", total: 30)
-bar.resize(70)
+bar.resize(100)
 30.times do
   sleep(0.1)
   bar.advance(1)
