@@ -2,7 +2,7 @@
 ### The Book of Food
 Make sure to create a good README.md with a short description, install instructions, a contributors guide and a link to the license for your code.
 
-Welcome to the Book of Food! Here, you can find, create, and save recipes. Enter ingredients that you have at home to find what you can make. As you get more comfortable in the kitchen, share your recipes with the community.
+Welcome to the Book of Food! Here, you can find, create, and save recipes to a specific user. Enter ingredients that you have at home to find what you can make. As you get more comfortable in the kitchen, share your recipes with the community.
 
 ### Install Instructions
 Clone the repository from https://github.com/jessanderson222/module-one-final-project-guidelines-dumbo-web-102918. When you put it onto your own computer, create a new branch to make any edits.
